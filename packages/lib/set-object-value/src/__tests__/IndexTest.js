@@ -25,3 +25,13 @@ describe("Test append", () => {
     expect(obj).to.deep.equal({ a: ["a3", "a4"] });
   });
 });
+
+describe("Prototype pollution", () => {
+  it("test Prototype pollution", () => {
+    const obj = {};
+    set(obj, ['__proto__','polluted'], "a1");
+    expect(obj.polluted).to.equal("a1");
+    expect({}.polluted).to.not.equal("a1");
+    expect({}.polluted).to.equal(undefined);
+  });
+});
